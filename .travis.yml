@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - 8
+
+env:
+global:
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+
+sudo: required
+services:
+  - docker
+
+install:
+  - npm install
+
+before_script:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
+script:
+  - docker build -t $TRAVIS_REPO_SLUG:$TAG .
+
+after_success:
+  - docker push $TRAVIS_REPO_SLUG:$TAG
