@@ -4,7 +4,7 @@ MAINTAINER Olivier Mouren <mouren.olivier@gmail.com>
 
 RUN mkdir /app
 
-COPY * /app/
+COPY . /app
 
 WORKDIR /app
 
