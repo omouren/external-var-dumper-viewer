@@ -31,7 +31,7 @@ export default {
     let socket = io.connect() // eslint-disable-line no-undef
     socket.on('connect', function (data) {
       socket.on('dump', function (data) {
-        _self.dumps.push(data)
+        _self.dumps.unshift(data)
       })
     })
   },
