@@ -7,20 +7,17 @@
       </div>
     </div>
 
-    <div v-for="dump in dumps" class="col-xs-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <span>From : {{ dump.app }}</span>
-          <i class="fa fa-close" @click="deleteDump(dump)"></i>
-        </div>
-        <div class="panel-body" v-html="dump.content"></div>
-      </div>
-    </div>
+    <dump v-for="dump in dumps" :dump="dump" @delete="deleteDump(dump)" class="col-xs-12" :key="dump.id"/>
   </div>
 </template>
 
 <script>
+import Dump from '@/components/Dump'
+
 export default {
+  components: {
+    Dump
+  },
   data () {
     return {
       dumps: []
@@ -59,9 +56,10 @@ export default {
     flex-direction: row;
   }
 
-  .panel-heading span {
+  .panel-heading .details {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: left;
     flex: 1;
   }
 
