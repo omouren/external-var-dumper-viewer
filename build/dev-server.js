@@ -51,7 +51,7 @@ const serverRoutes = require('./server-router')(io)
 
 // enable hot-reload and state-preserving
 // compilation error display
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'}))
 app.use(hotMiddleware)
 app.use('/', serverRoutes)
 
