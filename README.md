@@ -4,6 +4,8 @@
 
 Viewer in Vue.js for [ExternalVarDumperBundle](https://github.com/omouren/external-var-dumper-bundle)
 
+![Var Dumper Viewer](https://raw.githubusercontent.com/omouren/external-var-dumper-viewer/master/screenshot.png)
+
 ## Build Setup
 
 ``` bash
