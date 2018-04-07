@@ -1,7 +1,5 @@
 # external-var-dumper-viewer
 
-[![Build Status](https://travis-ci.org/omouren/external-var-dumper-viewer.svg?branch=master)](https://travis-ci.org/omouren/external-var-dumper-viewer)
-
 Viewer in Vue.js for [ExternalVarDumperBundle](https://github.com/omouren/external-var-dumper-bundle)
 
 ![Var Dumper Viewer](https://raw.githubusercontent.com/omouren/external-var-dumper-viewer/master/screenshot.png)
