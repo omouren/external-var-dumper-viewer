@@ -9,7 +9,7 @@
         </div>
         <i class="fa fa-close" @click="deleteSelf()"></i>
       </div>
-      <div class="panel-body" v-show="show" v-html="dump.content" :id="dump.id">></div>
+      <div class="panel-body" v-show="show" v-html="dump.content" :id="dump.id"></div>
     </div>
   </div>
 </template>
