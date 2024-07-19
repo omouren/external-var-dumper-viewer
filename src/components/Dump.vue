@@ -3,8 +3,10 @@
     <div class="panel panel-default">
       <div class="panel-heading" >
         <div class="details" @click="show = !show">
-          <span>From : {{ dump.app }}</span>
-          <span>in {{ dump.source.name }} line {{ dump.source.line }}</span>
+          <span v-html="dump.title"></span>
+          <span>in <span v-html="dump.source_description"></span></span>
+          <span v-if="dump.tags.controller">Controller: {{ dump.tags.controller }}</span>
+          <span v-if="dump.tags.project_dir">Project dir: {{ dump.tags.project_dir }}</span>
           <span>{{ countdown }}</span>
         </div>
         <i class="fa fa-close" @click="deleteSelf()"></i>

@@ -26,7 +26,7 @@ export default {
   mounted () {
     let _self = this
     let socket = io.connect() // eslint-disable-line no-undef
-    socket.on('connect', function (data) {
+    socket.on('connect', function () {
       socket.on('dump', function (data) {
         _self.dumps.unshift(data)
       })

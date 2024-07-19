@@ -12,9 +12,11 @@ const express = require('express')
 const webpack = require('webpack')
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = require('./webpack.dev.conf')
+const net = require('net')
 
 // default port where dev server listens for incoming traffic
 const port = process.env.PORT || config.dev.port
+
 // automatically open browser, if not set will be false
 const autoOpenBrowser = !!config.dev.autoOpenBrowser
 // Define HTTP proxies to your custom API backend
@@ -37,8 +39,8 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 })
 
 const bodyParser = require('body-parser')
-
 const serverRoutes = require('./server-router')(io)
+
 // force page reload when html-webpack-plugin template changes
 // currently disabled until this is resolved:
 // https://github.com/jantimon/html-webpack-plugin/issues/680
@@ -74,8 +76,6 @@ app.use(devMiddleware)
 const staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-const uri = 'http://localhost:' + port
-
 var _resolve
 var _reject
 var readyPromise = new Promise((resolve, reject) => {
@@ -85,23 +85,21 @@ var readyPromise = new Promise((resolve, reject) => {
 
 var server
 var portfinder = require('portfinder')
-portfinder.basePort = port
 
 console.log('> Starting dev server...')
 devMiddleware.waitUntilValid(() => {
-  portfinder.getPort((err, port) => {
+  portfinder.getPort({port: port}, (err, port) => {
     if (err) {
       _reject(err)
     }
-    process.env.PORT = port
-    var uri = 'http://localhost:' + port
+
+    const uri = 'http://localhost:' + port
     console.log('> Listening at ' + uri + '\n')
     // when env is testing, don't need open it
     if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
       opn(uri)
     }
     server = httpServer.listen(port)
-    _resolve()
   })
 })
 

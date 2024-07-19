@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:20-alpine
 
 MAINTAINER Olivier Mouren <mouren.olivier@gmail.com>
 
